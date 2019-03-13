@@ -1,1 +1,1 @@
-# java.concurrency.study
+# java.study
