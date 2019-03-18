@@ -13,7 +13,7 @@ AQS核心思想是，如果被请求的共享资源空闲，则将当前请求�
 CLH(Craig,Landin,and Hagersten)队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS是将每条请求共享资源的线程封装成一个CLH锁队列的一个结点（Node）来实现锁的分配。
 
 AQS(AbstractQueuedSynchronizer)原理图：
-![]()
+![](./doc.img/concurrent.aqs.png)
 
 AQS使用一个int成员变量来表示同步状态，通过内置的FIFO队列来完成获取资源线程的排队工作。AQS使用CAS对该同步状态进行原子操作实现对其值的修改。
 ```
