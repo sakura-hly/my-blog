@@ -13,7 +13,7 @@ public class FalseSharingDemo implements Runnable {
         }
     }
 
-    public FalseSharing(int arrayIndex) {
+    public FalseSharingDemo(int arrayIndex) {
         this.arrayIndex = arrayIndex;
     }
 
@@ -25,15 +25,15 @@ public class FalseSharingDemo implements Runnable {
 
     private static void runTest() throws InterruptedException {
         Thread[] threads = new Thread[NUM_THREADS];
-        for (int i =0;i<threads.length;i++){
-            threads[i] = new Thread(new FalseSharing(i));
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new Thread(new FalseSharingDemo(i));
         }
 
-        for (Thread thread:threads){
+        for (Thread thread : threads) {
             thread.start();
         }
 
-        for (Thread thread:threads){
+        for (Thread thread : threads) {
             thread.join();
         }
     }
