@@ -139,7 +139,6 @@ CREATE TABLE test(
 当事务的隔离级别为 READ COMMITED 时，虽然解决了脏读的问题，但是如果在 SESSION 1 先查询了一行数据，在这之后 SESSION 2 中修改了同一行数据并且提交了修改，
 在这时，如果 SESSION 1 中再次使用相同的查询语句，就会发现两次查询的结果不一样。
 ![](./doc.img/Read-Commited-Non-Repeatable-Read.png)
-
 不可重复读的原因就是，在 READ COMMITED 的隔离级别下，存储引擎不会在查询记录时添加行锁，锁定 id = 3 这条记录。
 ### 幻读
 > 在一个事务中，同一个范围内的记录被读取时，其他事务向这个范围添加了新的记录。
