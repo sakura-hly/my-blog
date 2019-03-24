@@ -100,7 +100,7 @@ private static int prevIndex(int i, int len) {
 既然Key是弱引用，那么我们要做的事，就是在调用ThreadLocal的get()、set()方法时完成后再调用remove方法，
 将Entry节点和Map的引用关系移除，这样整个Entry对象在GC Roots分析后就变成不可达了，下次GC的时候就可以被回收。
 
-如果使用ThreadLocal的set方法之后，没有显示的调用remove方法，就有可能发生内存泄露(关于内存泄露更多细节参考[ThreadLocal内存泄漏](https://www.jianshu.com/p/98b68c97df9b))
+如果使用ThreadLocal的set方法之后，没有显示的调用remove方法，就有可能发生内存泄露(关于内存泄露更多细节参考[ThreadLocal内存泄漏](https://www.jianshu.com/p/a1cd61fa22da))
 ，所以养成良好的编程习惯十分重要，使用完ThreadLocal之后，记得调用remove方法。
 ```
 ThreadLocal<Integer> threadLocal = new ThreadLocal<Session>();
