@@ -148,3 +148,9 @@ public interface TransactionStatus extends SavepointManager, Flushable {
     boolean isCompleted();
 }
 ```
+
+## Spring事务管理
+Spring支持两种方式的事务管理：
+* 编程式事务管理：通过Transaction Template手动管理事务
+* 使用XML配置声明式事务：代码侵入性小，推荐使用，由AOP实现
+
