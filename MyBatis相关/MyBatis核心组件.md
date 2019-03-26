@@ -171,8 +171,7 @@ public interface RoleMapper {
 ```
 有了这两个文件，就完成了 一个映射器的定义。 
 * <mapper>元素中的属性 namespace 所对应的是一个接口的全限定名， 于是 MyBatis.上下文就可以通过它找到对应的接口
-* <select>元素表明这是一条查询语旬， 而属性 id 标识了这条 SQL ，属性parameterType="long"说明传递给 SQL 的是一个 long 型的参数， 而 resultType＝"role"
-表示返回的是一个 role 类型的返回值。而 role 是之前配置文件 mybatis-config.xml 配置的别名，指代的是com.learn.ssm.pojo.Role
+* <select>元素表明这是一条查询语旬， 而属性 id 标识了这条 SQL ，属性parameterType="long"说明传递给 SQL 的是一个 long 型的参数， 而 resultType＝"role" 表示返回的是一个 role 类型的返回值。而 role 是之前配置文件 mybatis-config.xml 配置的别名，指代的是com.learn.ssm.pojo.Role
 * 这条 SQL 中的#{id}表示传递进去的参数
 
 注意，我们并没有配置 SQL 执行后和 role 的对应关系，它是如何映射的呢？其实这里采用的是一种被称为自动映射的功能，MyBatis 在默认情况下提供自动映射，只要 SQL 返回的列名能和 POJO 对应起来即可。
