@@ -6,6 +6,12 @@
     <typeAliases> <!--别名-->
         <typeAlias alias="role" type="com.learn.ssm.pojo.Role"/>
     </typeAliases>
+    <typeHandlers> <!--类型处理器-->
+        <typeHandler handler="com.learn.ssm.MyTypeHandler"/>
+    </typeHandlers>
+    <objectFactory type="com.learn.ssm.MyObjectFactory">
+        <property name="prop1" value="value1"/>
+    </objectFactory>
     <!--数据库环境-->
     <environments default="development">
         <environment id="development ">
