@@ -432,3 +432,5 @@ public interface DataSourceFactory {
 </mappers>
 ```
 这些配置会告诉了 MyBatis 去哪里找映射文件。
+
+参考[http://www.mybatis.org/mybatis-3/zh/configuration.html](http://www.mybatis.org/mybatis-3/zh/configuration.html)
