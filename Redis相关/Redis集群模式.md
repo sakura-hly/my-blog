@@ -54,7 +54,7 @@ ping时需要携带一些元数据，如果过于频繁，将会使网络压力�
 ![](./doc.img/hash.png)
 
 ###一致性hash算法
-
+可以参考我这篇[一致性hash算法](./../算法相关/一致性hash算法.md)
 
 ### Redis cluster 的 hash slot 算法
 Redis cluster 有固定16384(2^14)个hash slot，对每个key进行CRC16值，然后对16384取模，可以获取到该key对应的slot。
