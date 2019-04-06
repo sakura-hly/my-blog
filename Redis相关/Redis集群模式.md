@@ -53,7 +53,7 @@ ping时需要携带一些元数据，如果过于频繁，将会使网络压力�
 
 ![](./doc.img/hash.png)
 
-###一致性hash算法
+### 一致性hash算法
 可以参考我这篇[一致性hash算法](./../算法相关/一致性hash算法.md)
 
 ### Redis cluster 的 hash slot 算法
