@@ -67,3 +67,5 @@ client-output-buffer-limit slave 256mb 64mb 60
 
 ## 异步复制
 主节点每次接收到写命令后，先在内部写入，然后异步发送给从节点
+
+转载[https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-master-slave.md](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-master-slave.md)

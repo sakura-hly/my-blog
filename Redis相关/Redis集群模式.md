@@ -86,3 +86,5 @@ Redis cluster 的高可用跟哨兵模式差不多。
 slave 执行主备切换，slave 切换成 master。
 
 主备切换的原理跟哨兵模式非常类似。所以说，Redis cluster 功能强大，直接集成了 replication 和 sentinel 的功能。
+
+转载[https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-cluster.md](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-cluster.md)

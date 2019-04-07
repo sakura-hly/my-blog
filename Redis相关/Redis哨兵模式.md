@@ -111,3 +111,5 @@ sdown 达成的条件很简单，如果一个哨兵 ping 一个主节点，超�
 哨兵完成切换之后，会在本地生成最新的master配置，然后同步给其他的哨兵，就是通过 pub/sub 消息机制。
 
 这里之前的 version 号就很重要了，因为各种消息都是通过一个 channel 去发布和监听的，所以一个哨兵完成一次新的切换之后，新的 master 配置是跟着新的 version 号的。其他的哨兵都是根据版本号的大小来更新自己的 master 配置的。
+
+转载[https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-sentinel.md](https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-sentinel.md)
