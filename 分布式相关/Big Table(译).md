@@ -42,3 +42,41 @@ Bigtable中的每个单元格可以包含同一数据的多个版本； 这些�
 为了减少版本化数据的管理工作，我们支持两个列粒度系列的设置，这些设置告诉Bigtable自动垃圾收集单元格版本。 客户端可以指定仅保留单元格的最后n个版本，或者仅保留新的足够的版本（例如，仅保留最近7天写入的值）。
 
 在我们的Webtable示例中，我们将content：列中存储的已爬网页的时间戳设置为实际爬取这些页面版本的时间。 上述的垃圾收集机制使我们仅保留每个页面的最新三个版本。
+
+## 3. API
+
+Bigtable API提供了用于创建和删除表和列系列的功能。 它还提供了用于更改集群，表和列系列元数据的功能，例如访问控制权限。
+
+客户端应用程序可以在Bigtable中写入或删除值，可以从各个行中查找值，也可以遍历表中的数据子集。 下面显示了使用RowMutation抽象来执行一系列更新的C++代码。 （省略了详细信息，以使示例简短。）对Apply的调用对Webtable进行了原子突变：它将一个锚点添加到www.cnn.com并删除另一个锚点。
+
+```c++
+// Open the table
+Table *T = OpenOrDie("/bigtable/web/webtable");
+// Write a new anchor and delete an old anchor
+RowMutation r1(T, "com.cnn.www");
+r1.Set("anchor:www.c-span.org", "CNN");
+r1.Delete("anchor:www.abc.com");
+Operation op;
+Apply(&op, &r1);
+```
+
+下面显示了使用Scanner抽象对特定行中的所有锚点进行迭代的C++代码。 客户端可以迭代多个列族，并且有几种机制可以限制扫描产生的行，列和时间戳。 例如，我们可以将上面的扫描限制为仅生成其列与正则表达式anchor：*。cnn.com匹配的锚，或者仅生成其时间戳记在当前时间的十天内之内的锚。
+
+```c++
+Scanner scanner(T);
+ScanStream *stream;
+stream = scanner.FetchColumnFamily("anchor");
+stream->SetReturnAllVersions();
+scanner.Lookup("com.cnn.www");
+for (; !stream->Done(); stream->Next()) {
+    printf("%s %s %lld %s\n",
+        scanner.RowName(),
+        stream->ColumnName(),
+        stream->MicroTimestamp(),
+        stream->Value());
+}
+```
+
+Bigtable支持其他几种功能，这些功能允许用户以更复杂的方式操作数据。 首先，Bigtable支持单行事务，该事务可用于对存储在单个行键下的数据执行原子的读取-修改-写入序列。 Bigtable目前不支持跨行键的常规事务，尽管它提供了用于在客户端跨行键批处理写入的接口。 其次，Bigtable允许将单元用作整数计数器。 最后，Bigtable支持在服务器的地址空间中执行客户端提供的脚本。 这些脚本是用Google开发的一种用于处理数据的语言（称为Sawzall）编写的。 目前，我们基于Sawzall的API不允许客户端脚本将其写回到Bigtable，但允许多种形式的数据转换，基于任意表达式的筛选以及通过各种运算符的汇总。
+
+Bigtable可与MapReduce结合使用，MapReduce是一种由Google开发的用于运行大规模并行计算的框架。 我们编写了一组包装器，这些包装器允许Bigtable用作MapReduce作业的输入源和输出目标。
