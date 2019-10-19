@@ -122,4 +122,6 @@ Clock Condition满足下列两个条件：
 > Strong Clock Condition. For any events a, b in ¢:
 if a > b then C(a) < C(b).
 
-我们的逻辑时钟一般不能满足Strong Clock Condition。我们将使用物理时钟来消除此异常行为。
+我们的逻辑时钟一般不能满足Strong Clock Condition，需要使用物理时钟来消除此异常行为。
+
+[原文](./Time-Clocks-and-the-Ordering-of-Events-in-a-Distributed-System.pdf)
