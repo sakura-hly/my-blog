@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Student implements Comparable {
+class Student implements Comparable<Student> {
     String name;
     int score;
 
@@ -12,15 +12,15 @@ class Student implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Student o) {
         // 因为我们需要按score来排序，所以直接将两个对象的score相减，就可以得到两者的大小关系了。
         // 那为什么是 o.score - this.score呢？因为要求是按score降序排序。
         // 大家可以这样理解，this和o在原始序列中的位置是o在前，this在后，
         // 然后这里如果返回正数或0，那么依旧是o在前，this在后，
         // 繁殖如果返回负数，那么就要调整位置this在前，o在后。
-        if (((Student) o).score != this.score)
-            return ((Student) o).score - this.score;
-        return this.name.compareTo(((Student) o).name);
+        if (o.score != this.score)
+            return o.score - this.score;
+        return this.name.compareTo(o.name);
     }
 
     @Override
