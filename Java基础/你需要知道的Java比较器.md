@@ -164,12 +164,12 @@ compare()方法的实现跟前面的compareTo()大体一致，跑一下测试用
 public class ComparatorDemo {
 
     public static void main(String[] args) {
-        List<Student2> students = new ArrayList<>();
-        students.add(new Student2("Bob", 88));
-        students.add(new Student2("Marry", 85));
-        students.add(new Student2("Alan", 74));
-        students.add(new Student2("Harry", 90));
-        students.add(new Student2("Alice", 88));
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Bob", 88));
+        students.add(new Student("Marry", 85));
+        students.add(new Student("Alan", 74));
+        students.add(new Student("Harry", 90));
+        students.add(new Student("Alice", 88));
 
         // 由于Student不再实现Comparable，所以这里需要传入第二个参数，即我们自定义的比较器
         Collections.sort(students, new StudentComparator());
