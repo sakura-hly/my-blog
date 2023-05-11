@@ -1,0 +1,8 @@
+java -Xss512K -XX:InitialRAMPercentage=70 -XX:MaxRAMPercentage=70 -XX:MetaspaceSize=512M  \
+  -XX:MaxMetaspaceSize=512M -XX:ReservedCodeCacheSize=512M -XX:MaxDirectMemorySize=1G \
+  -XX:-UseBiasedLocking -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -XX:-OmitStackTraceInFastThrow   \
+  -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:+UnlockExperimentalVMOptions \
+  -XX:+UseG1GC -XX:MaxGCPauseMillis=200 \
+  -Xlog:gc*=debug,safepoint=info:gc.log:time,level,tags,tid:filecount=5,filesize=1G \
+  -XX:+UseContainerSupport \
+  -jar application.jar
